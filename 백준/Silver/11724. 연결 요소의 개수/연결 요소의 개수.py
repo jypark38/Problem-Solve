@@ -1,28 +1,47 @@
-import sys
-sys.setrecursionlimit(10000)
+from collections import deque
+# 6 8
+# 1 2
+# 2 5
+# 5 1
+# 3 4
+# 4 6
+# 5 4
+# 2 4
+# 2 3
 
-def dfs(s):
-    visited[s] = True
-    for i in graph[s]:
-        if not visited[i]:
-            dfs(i)
+# def dfs(v,graph,visited):
+#     stack = deque([v])
 
-n,m = map(int,input().split())
-graph = [[] for _ in range(n+1)]
-visited = [False]*(n+1)
+#     while stack:
+#         v = stack.pop()
+#         visited[v] = True
+#         for node in graph[v]:
+#             if not visited[node]:
+#                 stack.append(node)
+
+def dfs(v,graph,visited):
+    visited[v] = True
+    for node in graph[v]:
+        if not visited[node]:
+            dfs(node,graph,visited)
+
+N,E = map(int,input().split())
 cnt = 0
 
-for _ in range(m):
-    a,b = map(int,input().split())
-    graph[a].append(b)
-    graph[b].append(a)
+graph = [[] for _ in range(N+1)]
+visited = [False for _ in range(N+1)]
 
-for i in range(n):
-    graph[i].sort()
+for _ in range(E):
+    n1,n2 = map(int,input().split())
+    graph[n1].append(n2)
+    graph[n2].append(n1)
 
-for i in range(1,n+1):
-    if not visited[i]:
-        dfs(i)
-        cnt+=1
+# print(graph)
+
+for i in range(1,N+1):
+    if visited[i]:
+        continue
+    cnt += 1
+    dfs(i,graph,visited)
 
 print(cnt)
