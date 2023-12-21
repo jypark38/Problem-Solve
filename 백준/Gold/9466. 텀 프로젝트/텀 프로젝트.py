@@ -1,20 +1,18 @@
 import sys
-sys.setrecursionlimit(10**7)
+sys.setrecursionlimit(111111)
 
 def dfs(node,graph,cycle,visited):
-    global result
     visited[node] = True
     cycle.append(node)
     next = graph[node]
 
     if visited[next]:
         if next in cycle:
-            result -= len(cycle[cycle.index(next):])
-        return
+            return len(cycle[cycle.index(next):])
+        return 0
     else:
-        dfs(next,graph,cycle,visited)
-
-    
+        return dfs(next,graph,cycle,visited)
+        
 t = int(input())
 for case in range(t):
     n = int(input())
@@ -24,6 +22,5 @@ for case in range(t):
 
     for i in range(1,n+1):
         if not visited[i]:
-            cycle=[]
-            dfs(i,graph,cycle,visited)
+            result -= dfs(i,graph,[],visited)
     print(result)
