@@ -1,41 +1,39 @@
+import sys
 from collections import deque
+input = sys.stdin.readline
 
-def bfs(v,graph,visited,color):
-        q = deque([v])
-        color[v] = 1
+def bfs(v):
+    q = deque([v])
+    visited[v] = 1
+    while q:
+        c = q.popleft()
 
-        while q:
-            node = q.popleft()
-            next_color = color[node]*-1
-            visited[node] = True
+        for i in graph[c]:
+            if visited[i] == visited[c]:
+                return 0
+            if visited[i] == 0:
+                visited[i] = visited[c] * -1
+                q.append(i)
+    return 1
 
-            for next in graph[node]:
-                if not visited[next]:
-                    color[next] = next_color
-                    visited[next] = True
-                    q.append(next)
-                elif color[next] == color[node]:
-                    return 0
-        return 1
+k = int(input())
 
-t = int(input())
-
-for case in range(t):
+for case in range(k):
     v,e = map(int,input().split())
-    graph = [[] for _ in range(v+1)]
-    visited = [False for _ in range(v+1)]
-    color = [0 for _ in range(v+1)]
+
+    graph =[[] for _ in range(v+1)]
+    visited = [0] * (v+1)
+
     for _ in range(e):
-        n1, n2 = map(int,input().split())
+        n1,n2 = map(int,input().split())
         graph[n1].append(n2)
         graph[n2].append(n1)
 
-    flag = 1
-
     for i in range(1,v+1):
-        if not visited[i]:
-            if not bfs(i,graph,visited,color):
-                flag=0
-                break
+        if visited[i] == 0:
+            flag = bfs(i)
+        if flag == 0:
+            break
     
-    print('YES' if flag else 'NO')
+
+    print("YES" if flag else "NO")
