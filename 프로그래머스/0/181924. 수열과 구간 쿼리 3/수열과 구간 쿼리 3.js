@@ -1,10 +1,7 @@
 function solution(arr, queries) {
     var answer = [];
     for(q of queries){
-        const [a,b] = q
-        let temp = arr[b]
-        arr[b] = arr[a]
-        arr[a] = temp
+        [arr[q[0]],arr[q[1]]] = [arr[q[1]],arr[q[0]]]
     }
     return arr;
 }
