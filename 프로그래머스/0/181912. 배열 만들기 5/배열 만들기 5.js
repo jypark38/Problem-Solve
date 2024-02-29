@@ -1,3 +1,3 @@
 function solution(intStrs, k, s, l) {
-    return intStrs.map((e)=>Number(e.slice(s,s+l))).filter(e=>e>k)
+    return intStrs.map((e)=>e.slice(s,s+l)*1).filter(e=>e>k)
 }
