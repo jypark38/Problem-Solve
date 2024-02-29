@@ -1,5 +1,8 @@
 function solution(num_list) {
-    const m = num_list.reduce((a,b)=>a*b)
-    const s = num_list.reduce((a,b)=>a+b)**2
-    return m>s ? 0 : 1;
+    const {m,s} = num_list.reduce(({m,s},c) => {
+        m*=c
+        s+=c
+        return {m, s};
+    },{m:1,s:0})
+    return m>s**2 ? 0 : 1;
 }
