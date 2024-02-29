@@ -1,5 +1,14 @@
 function solution(num_list) {
-    const a = num_list.filter(e=>e%2).reduce((a,b)=>a+b,'')
-    const b = num_list.filter(e=>e%2==0).reduce((a,b)=>a+b,'')
-    return a*1+b*1
+    let odd = ''
+    let even = ''
+    
+    for(let i = 0 ; i <num_list.length; i++){
+        if (num_list[i]%2){
+            odd += num_list[i]
+        }else{
+            even += num_list[i]   
+        }
+    }
+
+    return odd*1+even*1
 }
