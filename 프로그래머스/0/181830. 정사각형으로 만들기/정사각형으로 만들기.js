@@ -1,9 +1,7 @@
 function solution(arr) {
     const row = arr.length
     const col = arr[0].length
-    if(row==col){
-        return arr
-    }
+    if(row==col) return arr
     if(row<col){
         const newRow = Array.from({length:col}).fill(0)
         for(let i = row; i<col;i++) arr.push(newRow)
