@@ -1,7 +1,7 @@
 function solution(l, r) {
     var answer = [];
-    
-    const maxLen = parseInt('1'.repeat((r+'').length)*1,2)
+    const rLength = r.toString().length
+    const maxLen = parseInt(('1'.repeat(rLength))*1,2)
     
     for(let i=1;i<=maxLen;i++){
         const n = i.toString(2)*5
