@@ -3,7 +3,7 @@ function solution(n, k) {
     console.log(n.toString(k))
     let num = n.toString(k)
     const primes = num.split('0').filter(e=>isPrime(e));
-    num = num.replaceAll('0','-0-').replaceAll('--','-').split('-')
+    num = num.split('0')
 
     const l = num.length
     for(let i=0;i<l;i++){
@@ -11,20 +11,7 @@ function solution(n, k) {
             continue
         }
         if(primes.includes(num[i])){
-            if(i==0 || i==l-1){
-                if(i==l-1){
-                    answer+=1
-                }else if(i==0 && num[i+1]==0){
-                    answer+=1
-                }else if(i==l-1 && num[i-1]==0){
-                    answer+=1
-                }
-            }
-            if(i>0 && i<l){
-                if(num[i-1]==0 && num[i+1]==0){
-                    answer+=1
-                }
-            }
+            answer+=1
         }
     }
     
