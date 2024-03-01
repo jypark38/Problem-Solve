@@ -12,7 +12,7 @@ function solution(friends, gifts) {
         takes[id]=[]
         table[id]={}
         friends.forEach(e=>{
-            table[id][e] = 0
+            if(e!==id) table[id][e] = 0
         })
     }
     
