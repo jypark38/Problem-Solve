@@ -8,9 +8,7 @@ function solution(code) {
             mode = !mode*1
             continue
         }
-        if(mode==0 && i%2==0){
-            ret += c
-        }else if(mode==1 && i%2!=0){
+        if(mode==i%2){
             ret += c
         }
     }
