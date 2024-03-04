@@ -12,4 +12,5 @@ class Solution:
             idx2+=1
         for i in range(idx1, lenN):
             nums[i]=0
+            
         print(nums)
