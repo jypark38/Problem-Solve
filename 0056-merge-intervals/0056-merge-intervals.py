@@ -4,13 +4,13 @@ class Solution:
         intervals.sort(key=lambda x:x[0])
         c = intervals[0]
         answer = []
-        for i in range(1,len(intervals)):
-            if(c[1]<intervals[i][0]):
+        for interval in intervals:
+            if(c[1]<interval[0]):
                 answer.append(c)
-                c=intervals[i]
+                c=interval
             else:
-                if(c[1]<intervals[i][1]):
-                    c[1]=intervals[i][1]
+                if(c[1]<interval[1]):
+                    c[1]=interval[1]
         answer.append(c)
                 
         return answer
