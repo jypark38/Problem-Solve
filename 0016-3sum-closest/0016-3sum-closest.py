@@ -1,13 +1,12 @@
 class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
-        answer = float('inf')
+        answer = 0
         md = float('inf')
         
         nums.sort()
         
         if(len(nums)==3):
             return sum(nums)
-        
         
         for i in range(len(nums)-2):
             
@@ -16,13 +15,12 @@ class Solution:
             
             while(l<r):
                 s = nums[i]+nums[l]+nums[r]
-                d = target-s
-                if(md>abs(d)):
-                    md = abs(d)
+                if(md>abs(target-s)):
+                    md = abs(target-s)
                     answer = s
                 if(s<target):
                     l+=1
-                elif(target<s):
+                elif(s>target):
                     r-=1
                 else:
                     return s
